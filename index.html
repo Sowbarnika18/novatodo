@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaTodo - Smart Task Manager</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>
+                    <i class="fas fa-sparkles"></i>
+                    NovaTodo
+                </h1>
+                <span class="version-badge">v2.0</span>
+            </div>
+            <p class="tagline">✨ Smart tasks for smart people</p>
+        </header>
+
+        <!-- Stats Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stat-card">
+                <i class="fas fa-tasks"></i>
+                <div>
+                    <span class="stat-number" id="totalTasks">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <span class="stat-number" id="completedTasks">0</span>
+                    <span class="stat-label">Done</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <span class="stat-number" id="pendingTasks">0</span>
+                    <span class="stat-label">Pending</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-fire"></i>
+                <div>
+                    <span class="stat-number" id="productivityScore">0%</span>
+                    <span class="stat-label">Productivity</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Task Section -->
+        <div class="add-task-section">
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="What's on your mind? (e.g., 'Finish project by Friday')" autocomplete="off">
+                <button id="voiceBtn" class="voice-btn" title="Voice input">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            <div class="task-options">
+                <select id="categorySelect" class="category-select">
+                    <option value="personal">📝 Personal</option>
+                    <option value="work">💼 Work</option>
+                    <option value="shopping">🛒 Shopping</option>
+                    <option value="health">💪 Health</option>
+                    <option value="other">📌 Other</option>
+                </select>
+                <input type="date" id="dueDate" class="date-input">
+                <button id="addTaskBtn" class="add-btn">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+            <div class="priority-suggestion" id="prioritySuggestion">
+                <i class="fas fa-lightbulb"></i>
+                <span>AI will suggest priority based on your task</span>
+            </div>
+        </div>
+
+        <!-- Filter & Search -->
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+            </div>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list-container">
+            <div class="task-list-header">
+                <span><i class="fas fa-list-ul"></i> Your Tasks</span>
+                <span class="task-count" id="taskCount">0 tasks</span>
+            </div>
+            <ul id="taskList" class="task-list">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-inbox"></i>
+                <p>No tasks yet. Start adding some!</p>
+                <small>Try adding "Buy groceries" or "Complete report"</small>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Info -->
+        <div class="shortcuts-info">
+            <kbd>Ctrl+Enter</kbd> Add task &nbsp;·&nbsp;
+            <kbd>Ctrl+Delete</kbd> Clear all &nbsp;·&nbsp;
+            <kbd>Ctrl+F</kbd> Focus search
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
