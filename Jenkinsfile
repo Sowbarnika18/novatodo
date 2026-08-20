@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo '📦 Cloning repository...'
                 git branch: 'main',
-                    url: 'https://github.com/${GITHUB_REPO}.git',
+                    url: "https://github.com/${GITHUB_REPO}.git",
                     credentialsId: 'github-credentials'
             }
         }
@@ -56,12 +56,13 @@ pipeline {
                         bat '''
                             git config user.email "jenkins@devops.local"
                             git config user.name "Jenkins DevOps"
-                            git checkout --orphan ${GITHUB_PAGES_BRANCH}
+                            git remote set-url origin https://x-access-token:%GH_TOKEN%@github.com/%GITHUB_REPO%.git
+                            git checkout --orphan %GITHUB_PAGES_BRANCH%
                             git rm -rf .
                             git checkout main -- index.html script.js style.css
                             git add .
-                            git commit -m "Deploy to GitHub Pages from Jenkins - Build #${BUILD_NUMBER}"
-                            git push -u origin ${GITHUB_PAGES_BRANCH} --force
+                            git commit -m "Deploy to GitHub Pages from Jenkins - Build #%BUILD_NUMBER%"
+                            git push -u origin %GITHUB_PAGES_BRANCH% --force
                         '''
                     }
                 }
